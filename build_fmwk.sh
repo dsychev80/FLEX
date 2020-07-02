@@ -38,4 +38,11 @@ lipo -create build/Release-iphoneos/$FRAMEWORK.framework/$FRAMEWORK build/Releas
 xcrun bitcode_strip -r Product/$FRAMEWORK.framework/Fatbuild -o Product/$FRAMEWORK.framework/$FRAMEWORK
 rm Product/$FRAMEWORK.framework/Fatbuild
 
+# Save history
+touch Product/$FRAMEWORK.framework/fmwk.history
+echo "$(git remote -v | awk 'NR == 1 {print $2}')" >> Product/$FRAMEWORK.framework/fmwk.history
+echo "$(git rev-parse --short HEAD)" >> Product/$FRAMEWORK.framework/fmwk.history
+echo "$(git rev-parse --abbrev-ref HEAD)" >> Product/$FRAMEWORK.framework/fmwk.history
+echo "$(date)" >> Product/$FRAMEWORK.framework/fmwk.history
+
 echo -e $TXTCOLOR_GREEN"➤_ Framework path: $(pwd)/Product/$FRAMEWORK.framework"$TXTCOLOR_DEFAULT
