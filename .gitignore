@@ -21,3 +21,5 @@ DerivedData
 Podfile.lock
 IDEWorkspaceChecks.plist
 Product
+Pods
+Test*
