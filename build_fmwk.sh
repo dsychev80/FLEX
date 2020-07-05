@@ -11,6 +11,8 @@ if [[ -z "$MACH_O" ]];then
     MACH_O=staticlib
 fi
 
+echo -e $TXTCOLOR_GREEN"➤_ Building with mach-o ${MACH_O}"$TXTCOLOR_DEFAULT
+
 rm -rf build &> /dev/null
 rm -rf Product &> /dev/null
 
@@ -19,7 +21,7 @@ xcodebuild -configuration "Release" -target "${FRAMEWORK}" -sdk iphonesimulator 
 if [[ ! $? -eq 0 ]]; then
     exit 1
 fi
-
+  
 echo -e $TXTCOLOR_GREEN"➤_ Compiling iphoneos ..."$TXTCOLOR_DEFAULT
 xcodebuild -configuration "Release" -target "$FRAMEWORK" -sdk iphoneos MACH_O_TYPE=$MACH_O | xcpretty
 if [[ ! $? -eq 0 ]];then
@@ -44,5 +46,6 @@ echo "$(git remote -v | awk 'NR == 1 {print $2}')" >> Product/$FRAMEWORK.framewo
 echo "$(git rev-parse --short HEAD)" >> Product/$FRAMEWORK.framework/fmwk.history
 echo "$(git rev-parse --abbrev-ref HEAD)" >> Product/$FRAMEWORK.framework/fmwk.history
 echo "$(date)" >> Product/$FRAMEWORK.framework/fmwk.history
+md5 -q Product/$FRAMEWORK.framework/$FRAMEWORK >> Product/$FRAMEWORK.framework/fmwk.history
 
 echo -e $TXTCOLOR_GREEN"➤_ Framework path: $(pwd)/Product/$FRAMEWORK.framework"$TXTCOLOR_DEFAULT
