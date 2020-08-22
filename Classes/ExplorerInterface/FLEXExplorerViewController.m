@@ -398,6 +398,10 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 
 - (void)recentButtonTapped:(FLEXExplorerToolbarItem *)sender {
     NSAssert(FLEXTabList.sharedList.activeTab, @"Must have active tab");
+    [self toggleRecentTool];
+}
+
+- (void)toggleRecentTool {
     [self presentViewController:FLEXTabList.sharedList.activeTab animated:YES completion:nil];
 }
 
