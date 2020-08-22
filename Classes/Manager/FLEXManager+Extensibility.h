@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registerGlobalEntryWithName:(NSString *)entryName
           viewControllerFutureBlock:(UIViewController * (^)(void))viewControllerFutureBlock;
 
+#pragma mark - Customized global entry
+- (void)registerFileBrowserDirectory:(NSString *)entryName
+                                path:(NSString *)path;
+
 #pragma mark - Simulator Shortcuts
 
 /// Simulator keyboard shortcuts are enabled by default.

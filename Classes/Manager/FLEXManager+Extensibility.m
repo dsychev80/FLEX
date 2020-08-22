@@ -58,6 +58,22 @@
     [self.userGlobalEntries addObject:entry];
 }
 
+- (void)registerFileBrowserDirectory:(NSString *)entryName
+                                path:(NSString *)path {
+    NSParameterAssert(entryName);
+    NSParameterAssert(path);
+    NSAssert(NSThread.isMainThread, @"This method must be called from the main thread.");
+
+    entryName = entryName.copy;
+    FLEXGlobalsEntry *entry = [FLEXGlobalsEntry entryWithNameFuture:^NSString *{
+        return entryName;
+    } viewControllerFuture:^UIViewController *{
+        return [[FLEXFileBrowserController alloc] initWithPath:path];
+    }];
+
+    [self.userGlobalEntries addObject:entry];
+}
+
 
 #pragma mark - Simulator Shortcuts
 
