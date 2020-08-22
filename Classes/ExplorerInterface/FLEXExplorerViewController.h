@@ -33,7 +33,6 @@
 - (void)toggleMoveTool;
 - (void)toggleViewsTool;
 - (void)toggleMenuTool;
-- (void)toggleRecentTool;
 
 /// @return YES if the explorer used the key press to perform an action, NO otherwise
 - (BOOL)handleDownArrowKeyPressed;

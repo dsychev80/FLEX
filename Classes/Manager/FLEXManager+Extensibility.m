@@ -127,11 +127,6 @@
         [self.explorerViewController toggleSelectTool];
     } description:@"Toggle select tool"];
     
-    [self registerDefaultSimulatorShortcutWithKey:@"r" modifiers:0 action:^{
-        [self showExplorerIfNeeded];
-        [self.explorerViewController toggleRecentTool];
-    } description:@"Toggle recentTool"];
-    
     [self registerDefaultSimulatorShortcutWithKey:@"m" modifiers:0 action:^{
         [self showExplorerIfNeeded];
         [self.explorerViewController toggleMoveTool];
